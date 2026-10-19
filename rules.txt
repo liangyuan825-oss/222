@@ -4,7 +4,6 @@
 ! 🚀 适用引擎: AdGuard Home / OpenWrt
 ! 📝 维护者: E路领航 (E-Way Pilot)
 !=========================================
-
 !=========================================
 ! [Module 01] ⚡️ 动态猎杀核心 (Regex 正则)
 ! 说明: 针对随机生成的 DGA 域名进行特征码打击
@@ -20,18 +19,66 @@
 /sf[0-9]+-ttcdn-tos\.pstatp\.com/
 /mon[0-9]+.*\.fqnovel\.com/
 /.*novelapp\.fqnovelvod\.com/
-
 ! --- 广告签名与 DGA 域名 ---
 /.*ad-sign.*\.byteimg\.com/
 /.*ad-sign.*\.tiktokcdn\.com/
 /.*ad-sign.*\.douyincdn\.com/
 /.*\.yingt\.fun/
 /.*\.hnzkclouds\.com/
-
 ! --- Facebook 广域 CDN (防误杀模式) ---
 /scontent-[a-z]{3}[0-9]+.*\.fbcdn\.net/
 /external.*\.fbcdn\.net/
+!========国内全APP广告追踪正则【新增合并】========
+!电商类 淘宝/天猫/京东/拼多多
+/.*ad.*\.taobao\.com/
+/.*alimama.*\.taobao\.com/
+/.*ad.*\.tmall\.com/
+/.*ad.*\.jd\.com/
+/.*advertising.*\.jd\.com/
+/.*ad.*\.pinduoduo\.com/
+/.*titan.*\.pinduoduo\.com/
 
+!视频类 爱奇艺/腾讯视频/优酷/B站/芒果/快手
+/.*ad.*\.iqiyi\.com/
+/.*cupid.*\.iqiyi\.com/
+/.*ad.*\.v\.qq\.com/
+/.*ad.*\.video\.qq\.com/
+/.*ad.*\.youku\.com/
+/.*ad.*\.bilibili\.com/
+/.*ad.*\.mgtv\.com/
+/.*ad.*\.kuaishou\.com/
+
+!社交社区 微博/知乎/小红书
+/.*ad.*\.weibo\.com/
+/.*ad.*\.zhihu\.com/
+/.*ad.*\.xiaohongshu\.com/
+
+!本地生活 美团/饿了么
+/.*ad.*\.meituan\.com/
+/.*ad.*\.dianping\.com/
+/.*ad.*\.ele\.me/
+
+!出行地图 高德、滴滴
+/.*ad.*\.amap\.com/
+/.*ad.*\.didiglobal\.com/
+
+!三大运营商 移动联通电信
+/.*ad.*\.10010\.com/
+/.*ad.*\.10086\.cn/
+/.*ad.*\.10000\.com/
+/.*ad.*\.189\.cn/
+
+!工具音乐阅读 网易云、酷狗、搜狗输入法
+/.*ad.*\.music\.163\.com/
+/.*ad.*\.kugou\.com/
+/.*ad.*\.sogou\.com/
+
+!通用埋点追踪（日志、统计上报，风险高！功能异常优先删这4行）
+/.*track.*\.[a-zA-Z0-9-]+\.(com|cn|net)/
+/.*analytics.*\.[a-zA-Z0-9-]+\.(com|cn|net)/
+/.*stat.*\.[a-zA-Z0-9-]+\.(com|cn|net)/
+/.*log.*\.[a-zA-Z0-9-]+\.(com|cn|net)/
+!=================================================
 !=========================================
 ! [Module 02] 🌪️ 字节系深度净化 (根域名毁灭)
 ! 说明: 针对番茄小说、抖音极速版的广告容器与日志回传
@@ -44,7 +91,6 @@
 ||ecombdapi.com^
 ||obj.ecombdstatic.com^
 ||sf3-ttcdn-tos.pstatp.com^
-
 ! --- 乱码域名与广告容器 ---
 ||siomxity.net^
 ||qtaeixd.com^
@@ -53,7 +99,6 @@
 ||ldhy.click^
 ||fqnovelvod.com^
 ||dig.bdurl.net^
-
 ! --- 字节系核心控制与更新 ---
 ||bytescm.com^
 ||bytegecko.com^
@@ -64,7 +109,6 @@
 ||is.snssdk.com^
 ||ttwebview.com^
 ||ncdn.ttwebview.com^
-
 ! --- 番茄特定广告 CDN ---
 ||lf-ad-nhs-pos.byteimg.com^
 ||monsetting.toutiao.com^
@@ -76,7 +120,6 @@
 ||pangolin-sdk-toutiao.com^
 ||volcengine.com^
 ||ad.toutiao.com^
-
 !=========================================
 ! [Module 03] 🚧 Meta (Facebook) 逃逸封锁
 ! 说明: 封死 Fallback 备用通道与 OHTTP 隧道
@@ -90,7 +133,6 @@
 ||mobile.facebook.com/ad_placements^
 ||lm.facebook.com^
 ||ice.facebook.com^
-
 ! --- [核心] 封死所有 Fallback (备用逃逸通道) ---
 ||graph-fallback.facebook.com^
 ||mobile-fallback.facebook.com^
@@ -101,18 +143,15 @@
 ||lookaside-fallback.facebook.com^
 ||b-graph-fallback.facebook.com^
 ||chat-e2ee-mini-fallback.facebook.com^
-
 ! --- [核心] 阻断 OHTTP 隧道 (防DNS绕过) ---
 ||ohttp-relay1.fastly-edge.com^
 ||ohttp-relay2.fastly-edge.com^
 ||hub5pn.v6.sandai.net^
 ||xbase.cloud^
 ||cfd-features.argotunnel.com^
-
 ! --- [修正] API 滥用防护 ---
 ||connect.facebook.net^
 ||mqtt-mini.facebook.com^
-
 !=========================================
 ! [Module 04] 🐦 X (Twitter) 行为分析阻断
 !=========================================
@@ -127,14 +166,12 @@
 ||scribe.twitter.com^
 ||syndication.twitter.com^
 ||legal.twitter.com^
-
 ! --- 新域名防护 ---
 ||ads.x.com^
 ||analytics.x.com^
 ||p.x.com^
 ||pixel.x.com^
 ||scribe.x.com^
-
 !=========================================
 ! [Module 05] 📺 智能电视/盒子净化 (小米特攻)
 ! 说明: 拦截开机广告、系统级推销与数据挖掘
@@ -156,7 +193,6 @@
 ||b.netcheck.gallery.pandora.xiaomi.com^
 ||staging.ai.api.xiaomi.com^
 ||o2o.api.xiaomi.com^
-
 ! --- GITV/视频关联广告 ---
 ||msga.ptqy.gitv.tv^
 ||bss.ptmi.gitv.tv^
@@ -167,7 +203,6 @@
 ||gstat.ptmi.gitv.tv^
 ||ad.hpplay.cn^
 ||rp.hpplay.cn^
-
 ! --- 手机端毒瘤 SDK/云相册 ---
 ||galleryapi.micloud.xiaomi.net^
 ||weatherapi.market.xiaomi.com^
@@ -177,7 +212,6 @@
 ||tracking.miui.com^
 ||data.mistat.xiaomi.com^
 ||t[0-9]+\.a\.market\.xiaomi\.com^
-
 !=========================================
 ! [Module 06] 🎬 国产视频与隐私跨应用追踪
 !=========================================
@@ -196,34 +230,11 @@
 ||atm.youku.com^
 ||iyes.youku.com^
 ||livep.l.qq.com^
-
-# ========== 爱奇艺APP广告域名 AGH规则 ==========
-||ad.m.iqiyi.com^
-||afp.iqiyi.com^
-||api.cupid.iqiyi.com^
-||uaa.iqiyi.com^
-||stat.iqiyi.com^
-||track.iqiyi.com^
-||log.iqiyi.com^
-||beacon.iqiyi.com^
-||adpic.iqiyi.com^
-||adsdk.iqiyi.com^
-||mads.iqiyi.com^
-||adshow.iqiyi.com^
-||data.m.iqiyi.com^
-||report.iqiyi.com^
-||analytics.iqiyi.com^
-
-# 正则规则（和你赛博禅文件里写法一致）
-/.*ad.*\.iqiyi\.com/
-
-
 ! --- 搜狗/微信 跨应用隐私追踪 ---
 ||ws-keyboard.shouji.sogou.com^
 ||input.shouji.sogou.com^
 ||v2.get.sogou.com^
 ||short.weixin.qq.com^
-
 ! --- 拼多多/Google/YouTube ---
 ||adim.pinduoduo.com^
 ||titan.pinduoduo.com^
@@ -233,7 +244,6 @@
 ||googleads.g.doubleclick.net^
 ||pagead2.googlesyndication.com^
 ||ads.youtube.com^
-
 !=========================================
 ! [Module 07] 🚑 智能白名单 (生命维持系统)
 ! 说明: 防止误杀关键服务，确保 Google 验证、IoT 设备存活
@@ -246,21 +256,18 @@
 @@||clientservices.googleapis.com^
 @@||gstatic.com^
 @@||play.google.com^
-
 ! --- [核心] 确保 Facebook/抖音 视频能播放 ---
 @@||video.xx.fbcdn.net^
 @@||scontent.xx.fbcdn.net^
 @@||pull-hls-t6.douyincdn.com^
 @@||pull-flv-l26.douyincdn.com^
 @@||aweme.snssdk.com^
-
 ! --- [核心] 确保 Twitter 短链接可点击 ---
 @@||t.co^
 @@||api.twitter.com^
 @@||api.x.com^
 @@||pbs.twimg.com^
-@@||video.twimg.com^
-
+@@||shturl.cc/rsQpe^
 ! --- [核心] 小米 IoT 智能家居防掉线 ---
 @@||io.mi.com^
 @@||api.io.mi.com^
@@ -268,7 +275,6 @@
 @@||api.mijia.tech^
 @@||broker.mqtt.pandora.xiaomi.com^
 @@||ota.cdn.pandora.xiaomi.com^
-
 ! --- 系统基础/微信 ---
 @@||wx.qlogo.cn^
 @@||apd-pcdnwxnat.teg.tencent-cloud.net^
