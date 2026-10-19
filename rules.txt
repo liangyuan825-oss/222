@@ -197,6 +197,27 @@
 ||iyes.youku.com^
 ||livep.l.qq.com^
 
+# ========== 爱奇艺APP广告域名 AGH规则 ==========
+||ad.m.iqiyi.com^
+||afp.iqiyi.com^
+||api.cupid.iqiyi.com^
+||uaa.iqiyi.com^
+||stat.iqiyi.com^
+||track.iqiyi.com^
+||log.iqiyi.com^
+||beacon.iqiyi.com^
+||adpic.iqiyi.com^
+||adsdk.iqiyi.com^
+||mads.iqiyi.com^
+||adshow.iqiyi.com^
+||data.m.iqiyi.com^
+||report.iqiyi.com^
+||analytics.iqiyi.com^
+
+# 正则规则（和你赛博禅文件里写法一致）
+/.*ad.*\.iqiyi\.com/
+
+
 ! --- 搜狗/微信 跨应用隐私追踪 ---
 ||ws-keyboard.shouji.sogou.com^
 ||input.shouji.sogou.com^
